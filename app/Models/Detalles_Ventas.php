@@ -7,5 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Detalles_Ventas extends Model
 {
-    use HasFactory;
+    protected $fillable = [ 'cantida', 'precio_venta', 'descuento'];
+
 }

@@ -7,5 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Ventas extends Model
 {
-    use HasFactory;
+    protected $fillable = [ 'fecha', 'tipo_comprobante', 'serie', 'correlativo', 'igv', 'estado'];
+
+
+
+
 }

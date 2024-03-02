@@ -7,5 +7,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class Articulos extends Model
 {
-    use HasFactory;
+    protected $fillable = ['codigo', 'nombre', 'descripcion', 'imagen'];
 }

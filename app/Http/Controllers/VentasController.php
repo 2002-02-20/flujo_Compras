@@ -12,7 +12,8 @@ class VentasController extends Controller
      */
     public function index()
     {
-        //
+        $ventas = Ventas::all();
+        return response()->json([ 'Ventas' => $ventas], 201); 
     }
 
     /**
@@ -28,15 +29,16 @@ class VentasController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        $ventas = Ventas::create($request->all());
+        return response()->json(['message' => 'Venta registrada correctamente', 'Ventas: ' => $ventas], 201);    }
 
     /**
      * Display the specified resource.
      */
-    public function show(Ventas $ventas)
+    public function show( $id)
     {
-        //
+        $ventas = Ventas::findOrFail($id);
+        return response()->json(['Venta:' => $ventas], 201);
     }
 
     /**
@@ -50,16 +52,20 @@ class VentasController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Ventas $ventas)
+    public function update(Request $request, $id)
     {
-        //
+        $ventas = Ventas::findOrFail($id);
+        $ventas->update($request->all());
+        return response()->json(['message' => 'Datos de la venta actualizado correctamente', 'Ventas: ' => $ventas], 201);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Ventas $ventas)
+    public function destroy( $id)
     {
-        //
+        $ventas = Ventas::findOrFail($id);
+        $ventas->delete();
+        return response()->json(['message' => 'Venta eliminada correctamente'], 201);
     }
 }

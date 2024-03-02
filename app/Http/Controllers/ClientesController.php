@@ -12,7 +12,8 @@ class ClientesController extends Controller
      */
     public function index()
     {
-        //
+        $clientes = Clientes::all();
+        return response()->json($clientes);
     }
 
     /**
@@ -28,15 +29,21 @@ class ClientesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate(['nombre' => 'required', 'apellido' => 'required', 'sexo' => 'required', 'fecha_nacimiento' => 'required','tipo_documento' => 'required','num_documento' => 'required','direccion' => 'required','telefono' => 'required','email' => 'required']);
+
+        $clientes = Clientes::create($request->all());
+        return response()->json(['clientes' => $clientes]);
+
+
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Clientes $clientes)
+    public function show( $id)
     {
-        //
+        $clientes = Clientes::findOrFail($id);
+        return response()->json($clientes);
     }
 
     /**
@@ -50,16 +57,24 @@ class ClientesController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Clientes $clientes)
+    public function update(Request $request,  $id)
     {
-        //
+      
+        $request->validate(['nombre' => 'required', 'apellido' => 'required', 'sexo' => 'required', 'fecha_nacimiento' => 'required','tipo_documento' => 'required','num_documento' => 'required','direccion' => 'required','telefono' => 'required','email' => 'required' . $id]);
+        
+        $clientes = Clientes::findOrFail($id);
+        $clientes->update($request->all());
+        return response()->json($clientes);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Clientes $clientes)
+    public function destroy( $id)
     {
-        //
+        $clientes = Clientes::findOrFail($id);
+        $clientes->delete();
+        return 'El registro se borro correctamente';
+    
     }
 }

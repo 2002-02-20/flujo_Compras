@@ -29,15 +29,21 @@ class ArticulosController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
+
+        $request->validate(['codigo' => 'required', 'nombre' => 'required', 'descripcion' => 'required', 'imagen' => 'required']);
+
+        $articulos = Articulos::create($request->all());
+        return response()->json(['articulos' => $articulos]);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Articulos $articulos)
+    public function show( $id)
     {
-        //
+        $articulos = Articulos::findOrFail($id);
+        return response()->json($articulos);
     }
 
     /**
@@ -51,16 +57,23 @@ class ArticulosController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Articulos $articulos)
+    public function update(Request $request,  $id)
     {
-        //
+        $request->validate(['codigo' => 'required', 'nombre' => 'required', 'descripcion' => 'required', 'imagen' => 'required' . $id,]);
+        
+
+        $articulos = Articulos::findOrFail($id);
+        $articulos->update($request->all());
+        return response()->json($articulos);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Articulos $articulos)
+    public function destroy( $id)
     {
-        //
+        $articulos = Articulos::findOrFail($id);
+        $articulos->delete();
+        return 'El registro se borro correctamente';
     }
 }
