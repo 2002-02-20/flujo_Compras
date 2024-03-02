@@ -13,7 +13,7 @@ class DetallesVentasController extends Controller
     public function index()
     {
         $detalles_ventas = Detalles_Ventas::all();
-        return response()->json([ 'Detalles_ventas' => $detalles_ventas], 201);     }
+        return response()->json([ 'Detalles_ventas' => $detalles_ventas]);     }
 
     /**
      * Show the form for creating a new resource.
@@ -29,7 +29,7 @@ class DetallesVentasController extends Controller
     public function store(Request $request)
     {
         $detalles_ventas = Detalles_Ventas::create($request->all());
-        return response()->json(['message' => 'Detalle_ventas registrado correctamente', 'Detalle_ventas: ' => $detalles_ventas], 201);
+        return response()->json(['Detalle_ventas: ' => $detalles_ventas]);
     }
 
     /**
@@ -38,7 +38,7 @@ class DetallesVentasController extends Controller
     public function show( $id)
     {
         $detalles_ventas = Detalles_Ventas::findOrFail($id);
-        return response()->json(['Detalles_Ventas:' => $detalles_ventas], 201);
+        return response()->json(['Detalles_Ventas:' => $detalles_ventas]);
     }
 
     /**
@@ -56,7 +56,7 @@ class DetallesVentasController extends Controller
     {
         $detalles_ventas = Detalles_Ventas::findOrFail($id);
         $detalles_ventas->update($request->all());
-        return response()->json(['message' => 'Datos de detalles_ventas actualizado correctamente', 'detalles_ventas: ' => $detalles_ventas], 201);
+        return response()->json(['detalles_ventas: ' => $detalles_ventas]);
     }
 
     /**
@@ -66,6 +66,6 @@ class DetallesVentasController extends Controller
     {
         $detalles_ventas = Detalles_Ventas::findOrFail($id);
         $detalles_ventas->delete();
-        return response()->json(['message' => 'detalles_ventas eliminado correctamente'], 201);
+        return response()->json(['message' => 'detalles_ventas eliminado correctamente']);
     }
 }

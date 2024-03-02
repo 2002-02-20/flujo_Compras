@@ -30,7 +30,7 @@ class VentasController extends Controller
     public function store(Request $request)
     {
         $ventas = Ventas::create($request->all());
-        return response()->json(['message' => 'Venta registrada correctamente', 'Ventas: ' => $ventas], 201);    }
+        return response()->json(['Ventas: ' => $ventas]);    }
 
     /**
      * Display the specified resource.
@@ -38,7 +38,7 @@ class VentasController extends Controller
     public function show( $id)
     {
         $ventas = Ventas::findOrFail($id);
-        return response()->json(['Venta:' => $ventas], 201);
+        return response()->json(['Venta:' => $ventas]);
     }
 
     /**
@@ -56,7 +56,7 @@ class VentasController extends Controller
     {
         $ventas = Ventas::findOrFail($id);
         $ventas->update($request->all());
-        return response()->json(['message' => 'Datos de la venta actualizado correctamente', 'Ventas: ' => $ventas], 201);
+        return response()->json(['Ventas: ' => $ventas]);
     }
 
     /**
@@ -66,6 +66,6 @@ class VentasController extends Controller
     {
         $ventas = Ventas::findOrFail($id);
         $ventas->delete();
-        return response()->json(['message' => 'Venta eliminada correctamente'], 201);
+        return response()->json(['message' => 'Venta eliminada correctamente']);
     }
 }

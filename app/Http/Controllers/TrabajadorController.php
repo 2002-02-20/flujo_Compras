@@ -13,7 +13,7 @@ class TrabajadorController extends Controller
     public function index()
     {
         $trabajadores = Trabajador::all();
-        return response()->json([ 'trabajadores' => $trabajadores], 201);    }
+        return response()->json([ 'trabajadores' => $trabajadores]);    }
 
     /**
      * Show the form for creating a new resource.
@@ -29,7 +29,7 @@ class TrabajadorController extends Controller
     public function store(Request $request)
     {
         $trabajadores = Trabajador::create($request->all());
-        return response()->json(['message' => 'Trabajador registrado correctamente', 'Trabajador: ' => $trabajadores], 201);
+        return response()->json(['Trabajador: ' => $trabajadores]);
     }
 
     /**
@@ -38,7 +38,7 @@ class TrabajadorController extends Controller
     public function show( $id)
     {
         $trabajador = Trabajador::findOrFail($id);
-        return response()->json(['Docente:' => $trabajador], 201);
+        return response()->json(['Trabajador:' => $trabajador]);
     }
 
     /**
@@ -56,7 +56,7 @@ class TrabajadorController extends Controller
     {
         $trabajador = Trabajador::findOrFail($id);
         $trabajador->update($request->all());
-        return response()->json(['message' => 'Datos del Trabajador actualizado correctamente', 'Trabajador: ' => $trabajador], 201);
+        return response()->json(['Trabajador: ' => $trabajador]);
     }
 
     /**
@@ -66,6 +66,6 @@ class TrabajadorController extends Controller
     {
         $trabajador = Trabajador::findOrFail($id);
         $trabajador->delete();
-        return response()->json(['message' => 'Trabajador eliminado correctamente'], 201);
+        return response()->json(['message' => 'Trabajador eliminado correctamente']);
     }
 }
