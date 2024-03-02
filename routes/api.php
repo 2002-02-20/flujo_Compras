@@ -2,10 +2,10 @@
 
 use App\Http\Controllers\ArticulosController;
 use App\Http\Controllers\ClientesController;
+use App\Http\Controllers\DetallesIngresosController;
+use App\Http\Controllers\DetallesVentasController;
 use App\Http\Controllers\TrabajadorController;
 use App\Http\Controllers\VentasController;
-use App\Models\Detalles_Ingresos;
-use App\Models\Detalles_Ventas;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -30,10 +30,10 @@ Route::resource('articulos', ArticulosController::class);
 Route::resource('clientes', ClientesController::class);
 
 /* DETALLES */
-Route::resource('detalles', Detalles_Ingresos::class);
+Route::resource('detalles-ingresos', DetallesIngresosController::class);
 
 /* VENTAS DETALLES */
-Route::resource('articulos', Detalles_Ventas::class);
+Route::resource('detalles-ventas', DetallesVentasController::class);
 
 /* TRABAJADORES */
 Route::resource('trabajador', TrabajadorController::class);
